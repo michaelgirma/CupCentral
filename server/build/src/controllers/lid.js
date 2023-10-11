@@ -15,22 +15,10 @@ const connection = {
 };
 const db = pgp()(connection);
 export class LidQueries {
-    getAllLids(req, res) {
-        return __awaiter(this, void 0, void 0, function* () {
-            try {
-                const allLids = yield db.manyOrNone("SELECT * FROM lid");
-                return res.json(allLids);
-            }
-            catch (error) {
-                console.error(error);
-                return res.status(500).json({ error: "An error occurred while fetching lids." });
-            }
-        });
-    }
     getLidById(req, res, id) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const Lid = yield db.one(`SELECT * FROM lid WHERE id = ${id}`);
+                const Lid = yield db.one(`SELECT lid FROM cup WHERE id = ${id}`);
                 return res.json(Lid);
             }
             catch (error) {
