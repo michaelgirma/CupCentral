@@ -39,3 +39,12 @@ CREATE TABLE cup (
     size_id INT REFERENCES size(id),
     image TEXT NOT NULL
 );
+
+CREATE TABLE cup (
+    id SERIAL PRIMARY KEY,
+    title TEXT NOT NULL,
+    lid TEXT[] NOT NULL,
+    color_id INT REFERENCES color(id),
+    size_id INT REFERENCES size(id),
+    image TEXT NOT NULL
+);

@@ -3,14 +3,12 @@ import cors from "cors";
 import dotenv from "dotenv";
 import { ColorQueries } from "./src/controllers/color.js";
 import { SizeQueries } from "./src/controllers/size.js";
-import { LidQueries } from "./src/controllers/lid.js";
 import { CupQueries } from "./src/controllers/cup.js";
 import { ColorRoutes } from "./src/routes/color.js";
 import { CupRoutes } from "./src/routes/cup.js";
-import { LidRoutes } from "./src/routes/lid.js";
 import { SizeRoutes } from "./src/routes/size.js";
 dotenv.config();
-const port = process.env.NODEPORT;
+const port = process.env.PORT;
 const corsOptions = {
     origin: (origin, callback) => {
         const allowedOrigins = "https://hotel-template-da.vercel.app/";
@@ -26,10 +24,9 @@ const server = express();
 server.use(cors(corsOptions));
 const ColorControllers = new ColorQueries();
 const SizeControllers = new SizeQueries();
-const LidControllers = new LidQueries();
 const CupControllers = new CupQueries();
 server.get("/", (req, res) => {
-    res.json("Hotel API");
+    res.json("Cup API");
 });
 //Server for Colors Table
 server.get(ColorRoutes.getAllColors, (req, res) => {
@@ -55,12 +52,19 @@ server.get(CupRoutes.getCupById, (req, res) => {
     const id = req.params.id;
     CupControllers.getCupById(req, res, id);
 });
-//Server for Lids Table
-server.get(LidRoutes.getAllLids, (req, res) => {
-    LidControllers.getAllLids(req, res);
+server.get(CupRoutes.createCup, (req, res) => {
+    const data = req.params.data;
+    CupControllers.createCup(req, res, data);
 });
-server.get(LidRoutes.getLidById, (req, res) => {
+server.get(CupRoutes.updateCupById, (req, res) => {
+    const data = req.params.data;
+    CupControllers.updateCupById(req, res, data);
+});
+server.get(CupRoutes.deleteCupById, (req, res) => {
     const id = req.params.id;
-    LidControllers.getLidById(req, res, id);
+    CupControllers.deleteCupById(req, res, id);
+});
+server.get("*", (req, res) => {
+    res.status(404).json("Page not found");
 });
 server.listen(port, () => console.log(`Server is running on port ${port}`));
