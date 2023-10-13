@@ -45,7 +45,7 @@ export class CupQueries {
         }
       }
       
-      async updateCupById(req: Request, res: Response, data: any) {
+      async updateCupById(req: Request, res: Response, data: any ) {
         try {
           const input = data;
           const id = input.id;
