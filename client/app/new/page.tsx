@@ -1,6 +1,9 @@
 import { Metadata } from 'next';
 import React from 'react';
 import "./globals.css"
+import NewForm from './components/NewForm';
+
+
 
 export const metadata: Metadata = {
   title: 'CupCentral',
@@ -8,10 +11,13 @@ export const metadata: Metadata = {
 };
 
 export default function Home() {
+
+ 
+
   return (
     <html>
       <body>
-        
+        <NewForm />
       </body>
   </html>
   )

@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 export default async function Location({ params }: { params: { id: string } }) {
 
   const cup = await getCupByID(params.id);
-
+  
   return (
     <html>
       <body>
