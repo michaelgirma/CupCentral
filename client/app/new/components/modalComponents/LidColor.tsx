@@ -1,19 +1,35 @@
 import React, { useState } from "react";
 import { Cup } from "../NewForm";
+import GetAllColors from "@/services/GET/GetAllColors";
 
 interface LidColorProps {
     prevArray: Cup[];
+    updateLidColor: (prevCupColor: string, lidColor: string) => void;
     sendLidColor: (LidColor: string) => void;
     setCheckout: () => void;
 }
 
-const LidColor: React.FC<LidColorProps> = ({ prevArray, sendLidColor, setCheckout }) => {
+const LidColor: React.FC<LidColorProps> = ({ prevArray, sendLidColor, setCheckout, updateLidColor }) => {
 
     const [LidColor, setLidColor] = useState('');
     const [showWarning, setShowWarning] = useState(false);
+    const [colors, setColors] = useState([]);
+    const prevArrCupColor = prevArray[1];
+    const prevCupColor = prevArrCupColor.cupColor;
 
-    const changeLidColor = (color: string) => {
+    
+    const fetchAllColors = async () => {
+        const res = await GetAllColors();
+        setColors(res);             
+    };
+
+    if (colors.length === 0) {
+        fetchAllColors();
+    }
+
+    const changeLidColor = (prevCupColor: string, color: string) => {
         setLidColor(color);
+        updateLidColor(prevCupColor, color)
     }
 
     const checkLidColor = () => {
@@ -33,7 +49,7 @@ const LidColor: React.FC<LidColorProps> = ({ prevArray, sendLidColor, setCheckou
     
     return (
         <div>
-            <div onClick={() => changeLidColor("HexValue...")}></div>
+            <div onClick={() => changeLidColor(prevCupColor, "HexValue...")}></div>
             <div onClick={checkLidColor}></div>
         </div>
     )

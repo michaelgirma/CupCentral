@@ -11,7 +11,7 @@ dotenv.config();
 const port = process.env.PORT;
 const corsOptions = {
     origin: (origin, callback) => {
-        const allowedOrigins = "https://hotel-template-da.vercel.app/";
+        const allowedOrigins = "http://localhost:3000";
         if (!origin || allowedOrigins.includes(origin)) {
             callback(null, true);
         }

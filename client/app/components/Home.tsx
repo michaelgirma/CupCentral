@@ -3,7 +3,6 @@ import '../globals.css'
 
 export default function Home(cups: any) {
 
-    console.log(cups)
     return ( 
         <div id="Home">
             <div id="HomeContainer">
@@ -26,11 +25,70 @@ export default function Home(cups: any) {
         <style>
             {`
                 #Home{
+                    display: flex;
+                    position: relative;
+                    width: 100%;
+                    height: 100vh;
+                }
+                #HomeContainer{
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    width: 100%;
+                    height: 100%;
+                }
+                #CupCardsContainer{
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: center;
+                    align-items: center;
+                    width: 100%;
+                    height: 100%;
+                }
+                #CupCard{
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    width: 300px;
+                    height: 300px;
+                    margin: 10px;
                     border: 1px solid white;
                 }
-                #LearnMore{
+                #CupImageContainer{
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    width: 100%;
+                    height: 70%;
+                }
+                #CupImage{
+                    width: 100%;
+                    height: 100%;
+                }
+                #CupInfo{
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    width: 100%;
+                    height: 30%;
+                }
+                #CupName{
+                    font-size: 20px;
+                    font-weight: bold;
                     color: white;
                 }
+                #CupPrice{
+                    font-size: 15px;
+                    color: white;
+                }
+                #LearnMore{
+                    font-size: 15px;
+                    color: white;
+                }
+               
             `}
         </style>
         </div>
