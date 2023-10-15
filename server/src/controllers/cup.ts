@@ -30,41 +30,37 @@ export class CupQueries {
         }
       }
     
-      async createCup(req: Request, res: Response, data: any) {
-        try {
-          const input = data;
-          if (input.size_id != input.lid[0]) {
-            return res.status(400).json({ error: "Lid and Cup size do not match." });
-          }
-          const cup: Cup = input;
-          const insertCup = await db.one(`INSERT INTO cup (title, size_id, color_id, lid) VALUES ($1, $2, $3, $4) RETURNING *`, [cup.title, cup.size_id, cup.color_id, cup.lid]);
-          return res.json(insertCup);
-        } catch(error) {
+      createCup(req: Request, res: Response, data: any) {
+        const cup: Cup = data;
+        db.none("INSERT INTO cup (title, size_id, color_id, lid, image) VALUES ($1, $2, $3, $4, $5)", [cup.title, cup.size_id, cup.color_id, cup.lid, cup.image])
+        .then(() => { 
+          console.log("Cup added");
+        })
+        .catch((error) => {
           console.error(error);
-          return res.status(500).json({ error: "An error occurred while creating a Cup." });
-        }
+        });
       }
       
-      async updateCupById(req: Request, res: Response, data: any ) {
-        try {
-          const input = data;
-          const id = input.id;
-          const cup: Cup = input;
-          const updateCup = await db.one(`UPDATE cup SET title = $1, size_id = $2, color_id = $3, lid = $4 WHERE id = ${id} RETURNING *`, [cup.title, cup.size_id, cup.color_id, cup.lid]);
-          return res.json(updateCup);
-        } catch(error) {
+      updateCupById(req: Request, res: Response, data: any, id: string ) {
+        const cup: Cup = data;
+        db.none("UPDATE cup SET title = $1, size_id = $2, color_id = $3, lid = $4 WHERE id = $5", [cup.title, cup.size_id, cup.color_id, cup.lid, id])
+        .then(() => { 
+          console.log("Cup Updated");
+        })
+        .catch((error) => {
           console.error(error);
-          return res.status(500).json({ error: "An error occurred while updating a Cup." });
-        }
+        });
       }
 
-      async deleteCupById(req: Request, res: Response, id: string) {
-        try {
-          const deleteCup = await db.one(`DELETE FROM cup WHERE id = ${id} RETURNING *`);
-          return res.json(deleteCup);          
-        } catch(error) {
+      deleteCupById(req: Request, res: Response, id: string) {
+        db.none("DELETE FROM cup WHERE id = $1", [id])
+        .then(() => { 
+          console.log("Hotel deleted");
+        })
+        .catch((error) => {
           console.error(error);
-          return res.status(500).json({ error: "An error occurred while deleting a Cup." });
-        }
+        });
       }
+
+  
 }

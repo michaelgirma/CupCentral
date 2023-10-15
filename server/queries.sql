@@ -48,3 +48,9 @@ CREATE TABLE cup (
     size_id INT REFERENCES size(id),
     image TEXT NOT NULL
 );
+
+UPDATE size SET image = 'https://cdn.iconscout.com/icon/free/png-512/free-s-character-alphabet-letter-32865.png?f=webp&w=256' WHERE id = 1;
+    
+UPDATE size SET image = 'https://cdn.iconscout.com/icon/free/png-512/free-m-character-alphabet-letter-32858.png?f=webp&w=256' WHERE id = 2;
+    
+UPDATE size SET image = 'https://cdn.iconscout.com/icon/free/png-512/free-l-character-alphabet-letter-32862.png?f=webp&w=256' WHERE id = 3;

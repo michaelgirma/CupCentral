@@ -1,16 +1,16 @@
 import React, { useState } from "react";
-import { Cup } from "../NewForm";
+import { Cup } from "../../../../services/types";
 import GetAllColors from "@/services/GET/GetAllColors";
-
+import { ConvertValues } from "../../../utils/ConvertValues";
 
 interface CupColorProps {
-    prevArray: Cup[];
+    prevCup: Cup;
     updateCupColor: (cupColor: string, lidColor: string) => void;
-    sendCupColor: (cupColor: string) => void;
+    sendCupColor: (cupColor: number) => void;
     setLidSize: () => void;
 }
 
-const CupColor: React.FC<CupColorProps> = ({ prevArray, sendCupColor, setLidSize, updateCupColor }) => {
+const CupColor: React.FC<CupColorProps> = ({ prevCup, sendCupColor, setLidSize, updateCupColor }) => {
 
     const [cupColor, setCupColor] = useState('');
     const [showWarning, setShowWarning] = useState(false);
@@ -30,21 +30,20 @@ const CupColor: React.FC<CupColorProps> = ({ prevArray, sendCupColor, setLidSize
     const changeCupColor = (color: string, id: string) => {
         setCupColor(color);
         setSelectedColorId(id);
-        updateCupColor(color, "Black");
+        updateCupColor(color, "#000000");
+        sendCupColor(ConvertValues(cupColor));
     }
 
-    
 
     const checkCupColor = () => {
-        const cupState = cupColor;
-        if (cupState === '') {
+        if (cupColor === '') {
             setShowWarning(true);
             setTimeout(() => {
                 setShowWarning(false);
             }, 3000);
         } else {
             setShowWarning(false);
-            sendCupColor(cupState);
+            sendCupColor(ConvertValues(cupColor));
             setLidSize();
         }
     }
@@ -53,6 +52,9 @@ const CupColor: React.FC<CupColorProps> = ({ prevArray, sendCupColor, setLidSize
     return (
         <div id="CupColor">
             <div id="CupColorContainer">
+                <div id="CupColorHeaderContainer">
+                    <p id="CupColorHeader">Choose Your Cup Color</p>
+                </div>
                 <div id="RightCupColorContainer">
                     {colors.map((color: any) => (
                         <div id='ColorOption' key={color.id} className={selectedColorId === color.id ? 'selected' : ''} onClick={() => changeCupColor(color.color, color.id)}>
@@ -61,9 +63,10 @@ const CupColor: React.FC<CupColorProps> = ({ prevArray, sendCupColor, setLidSize
                         </div>
                     ))}
                 </div>
+                <div id="CupColorButton">
+                    <button onClick={checkCupColor}>Next</button>
+                </div>
             </div>
-            <div onClick={checkCupColor}></div>
-
             <style>{`
                 #CupColor {
                     display: flex;
@@ -81,6 +84,25 @@ const CupColor: React.FC<CupColorProps> = ({ prevArray, sendCupColor, setLidSize
                     height: 100%;
                     justify-content: space-around;
                     align-items: center;
+                }
+                #CupColorHeaderContainer {
+                    display: flex;
+                    position: relative;
+                    width: 100%;
+                    height: 100%;
+                    justify-content: center;
+                    align-items: center;
+                }
+                #CupColorHeader {
+                    display: flex;
+                    position: relative;
+                    width: 100%;
+                    height: 100%;
+                    justify-content: center;
+                    align-items: center;
+                    font-size: 1.5rem;
+                    font-weight: bold;
+                    color: white;
                 }
                 #RightCupColorContainer {
                     display: flex;
@@ -103,7 +125,7 @@ const CupColor: React.FC<CupColorProps> = ({ prevArray, sendCupColor, setLidSize
                     border: 1px solid white;
                 }
                 #ColorOption.selected {
-                    border: 5px solid blue; 
+                    border: 5px solid red; 
                 }
                 #ColorSelectButton {
                     display: flex;
@@ -114,7 +136,23 @@ const CupColor: React.FC<CupColorProps> = ({ prevArray, sendCupColor, setLidSize
                     align-items: center;
                     border-radius: 50%; 
                 }
-                
+                #CupColorButton button{
+                    display: flex;
+                    position: relative;
+                    width: 100px;
+                    height: 40px;
+                    justify-content: center;
+                    align-items: center;
+                    border-radius: 30px;
+                    font-size: 1.2rem;
+                    font-weight: bold;
+                }
+                #CupColorButton button:hover{
+                    transform: scale(1.2); 
+                    transition: transform 0.4s ease-in-out;
+                    opacity: 0.5;
+                    cursor: pointer;
+                }
             `}</style>
         </div>
     )

@@ -1,28 +1,18 @@
 'use client'
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
+import CupTitle from './modalComponents/CupTitle'
 import CupSize from './modalComponents/CupSize'
 import CupColor from './modalComponents/CupColor'
 import LidSize from './modalComponents/LidSize'
 import LidColor from './modalComponents/LidColor'
 import Checkout from './modalComponents/Checkout'
-import {CupImages} from './modalComponents/CupImages'
-
-export interface Cup {
-    cupSize: string;
-    cupColor: string;
-    lidSize: string;
-    lidColor: string;
-}
-
-export interface CupImage {
-    lid: string;
-    cup: string;
-    img: string;
-}
+import { CupImages } from '../../utils/CupImages'
+import { Cup, CupImage } from '../../../services/types'
 
 export default function NewForm() {
-    const [cup, setCup] = useState<Cup[]>([]);
-    const [showCupSize, setShowCupSize] = useState(true);
+    const [cup, setCup] = useState<Cup>({ title: '', size_id: 0, color_id: 0, lid: [], image: '' });
+    const [showCupTitle, setShowCupTitle] = useState(true);
+    const [showCupSize, setShowCupSize] = useState(false);
     const [showCupColor, setShowCupColor] = useState(false);
     const [showLidSize, setShowLidSize] = useState(false);
     const [showLidColor, setShowLidColor] = useState(false);
@@ -32,31 +22,54 @@ export default function NewForm() {
     
     const changeCupImage = (cup: string, lid: string) => {
         const newCupImage = CupImages.find(item => item.lid === lid && item.cup === cup);
-        if(newCupImage){
+        if (newCupImage) {
             setCupImage(newCupImage);
             setCupColor(newCupImage.cup);
         }
-
     }
 
-    const addCupSize = (cupSize: string) => {
-        const newCup: Cup = { cupSize: cupSize, cupColor: '', lidSize: '', lidColor: '' };
-        setCup([...cup, newCup]);
-    }
-
-    const addCupColor = (cupColor: string) => {
-        const updatedCup = cup.map(item => ({ ...item, cupColor: cupColor }));
+    const addCupTitle = (title: string) => {
+        const updatedCup: Cup = { ...cup, title: title };
         setCup(updatedCup);
+        console.log('The new cup is: ', cup)
     }
 
-    const addLidSize = (lidSize: string) => {
-        const updatedCup = cup.map(item => ({ ...item, lidSize: lidSize }));
+    const addCupSize = (cupSize: number) => {
+        const updatedCup: Cup = { ...cup, size_id: cupSize };
         setCup(updatedCup);
+        console.log('The new cup is: ', cup)
+    }
+    
+
+    const addCupColor = (cupColor: number) => {
+        const updatedCup: Cup = { ...cup, color_id: cupColor };
+        setCup(updatedCup);
+        console.log('The new cup is: ', cup)
+
     }
 
-    const addLidColor = (lidColor: string) => {
-        const updatedCup = cup.map(item => ({ ...item, lidColor: lidColor }));
+    const addLidSize = (lidSize: number) => {
+        const updatedCup: Cup = { ...cup, lid: [...cup.lid, lidSize] };
         setCup(updatedCup);
+        console.log('The new cup is: ', cup)
+    }
+
+    const addLidColor = (lidColor: number) => {
+        const updatedCup: Cup = { ...cup, lid: [...cup.lid, lidColor] };
+        setCup(updatedCup);
+        console.log('The new cup is: ', cup)
+        addCupImage(cupImage.img);
+    }
+
+    const addCupImage = (cupImage: string) => {
+        const updatedCup: Cup = { ...cup, image: cupImage };
+        setCup(updatedCup);
+        console.log('The new cup is: ', cup)
+    }
+    
+    const handleShowCupSize = () => {
+        setShowCupTitle(false);
+        setShowCupSize(true);
     }
 
     const handleShowCupColor = () => {
@@ -86,15 +99,13 @@ export default function NewForm() {
                     <img src={cupImage.img} />
                 </div>
                 <div id="RightContainer">
-                    <div id="NewCupHeader">
-                        <h1>Create Your Cup</h1>
-                    </div>
                     <div id="Modal">
-                        {showCupSize && <CupSize sendCupSize={(cupSize: string) => addCupSize(cupSize)} setCupColor={handleShowCupColor}  />}
-                        {showCupColor && <CupColor prevArray={cup} sendCupColor={(cupColor: string) => addCupColor(cupColor)} setLidSize={handleShowLidSize} updateCupColor={(cupColor: string, lidColor: string) => changeCupImage(cupColor, lidColor)}/>}
-                        {showLidSize && <LidSize prevArray={cup} sendLidSize={(lidSize: string) => addLidSize(lidSize)} setLidColor={handleShowLidColor} />}
-                        {showLidColor && <LidColor prevArray={cup} sendLidColor={(lidColor: string) => addLidColor(lidColor)} setCheckout={handleShowCheckout} updateLidColor={(prevCupColor: string, lidColor: string) => changeCupImage(cupColor, lidColor)}/>}
-                        {showCheckout && <Checkout finalArray={cup} />}
+                        {showCupTitle && <CupTitle sendCupTitle={(cupTitle: string) => addCupTitle(cupTitle)} setCupSize={handleShowCupSize} />}
+                        {showCupSize && <CupSize sendCupSize={(cupSize: number) => addCupSize(cupSize)} setCupColor={handleShowCupColor}  />}
+                        {showCupColor && <CupColor prevCup={cup} sendCupColor={(cupColor: number) => addCupColor(cupColor)} setLidSize={handleShowLidSize} updateCupColor={(cupColor: string, lidColor: string) => changeCupImage(cupColor, lidColor)}/>}
+                        {showLidSize && <LidSize prevCup={cup} sendLidSize={(lidSize: number) => addLidSize(lidSize)} setLidColor={handleShowLidColor} />}
+                        {showLidColor && <LidColor prevCup={cup} sendLidColor={(lidColor: number) => addLidColor(lidColor)} setCheckout={handleShowCheckout} updateLidColor={(lidColor: string) => changeCupImage(cupColor, lidColor)}/>}
+                        {showCheckout && <Checkout finalCup={cup} />}
                     </div>
                 </div>
             </div>
@@ -127,6 +138,7 @@ export default function NewForm() {
                     border: 1px solid white;
                     border-top-left-radius: 30px;
                     border-bottom-left-radius: 30px;
+                    background-color: white;
                 }
                 #LeftContainer img{
                     display: flex;
@@ -142,7 +154,7 @@ export default function NewForm() {
                     position: relative;
                     flex-direction: column;
                     width: 51%;
-                    height: 85%;
+                    height: 95%;
                     justify-content: space-between;
                     align-items: center;
 =                }
@@ -152,7 +164,7 @@ export default function NewForm() {
                     width: 100%;
                     height: 39%;
                     justify-content: center;
-                    align-items: flex-start;
+                    align-items: center;
                 }
                 #NewCupHeader h1{
                     color: white;
