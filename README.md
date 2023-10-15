@@ -1,27 +1,27 @@
-# WEB103 Project 4 - *Name of App Here*
+# WEB103 Project 4 - *CupCentral*
 
-Submitted by: **Your name here**
+Submitted by: **Michael Girma**
 
-About this web app: **App description here**
+About this web app: **A full-stack e-commerce website that is built with postgress, express, react and node. Implements CRUD requests**
 
-Time spent: **X** hours
+Time spent: **25** hours
 
 ## Required Features
 
 The following **required** functionality is completed:
 
 <!-- Make sure to check off completed functionality below -->
-- [ ] **The web app is connected to a PostgreSQL database, with an appropriately structured `CustomCar` table**
-  - [ ] **NOTE: Your GIF must include a view of your Railway database that shows the contents of the table used by your app**
-- [ ] **The web app uses React to display data from the API**
-- [ ] **Users can view a list of options they can select for different aspects of a `CustomCar`**
-- [ ] **On selecting each option, the displayed visual icon for the `CustomCar` updates to match the option the user chose**
-- [ ] **The user can submit their choices to save the car to the list of created `CustomCar`**
-- [ ] **If a user submits a feature combo that is impossible, they should receive an appropriate error message and the item should not be saved to the database**
-- [ ] **The app displays the total price of all features**
-- [ ] **Users can view a list of all submitted `CustomCar`**
-- [ ] **Users can edit or delete a submitted `CustomCar` from the list view of submitted `CustomCar`**
-- [ ] **Users can update or delete `CustomCar` that have been created from the detail page**
+- [x] **The web app is connected to a PostgreSQL database, with an appropriately structured `CustomCar` table**
+  - [x] **NOTE: Your GIF must include a view of your Railway database that shows the contents of the table used by your app**
+- [x] **The web app uses React to display data from the API**
+- [x] **Users can view a list of options they can select for different aspects of a `CustomCar`**
+- [x] **On selecting each option, the displayed visual icon for the `CustomCar` updates to match the option the user chose**
+- [x] **The user can submit their choices to save the car to the list of created `CustomCar`**
+- [x] **If a user submits a feature combo that is impossible, they should receive an appropriate error message and the item should not be saved to the database**
+- [x] **The app displays the total price of all features**
+- [x] **Users can view a list of all submitted `CustomCar`**
+- [x] **Users can edit or delete a submitted `CustomCar` from the list view of submitted `CustomCar`**
+- [x] **Users can update or delete `CustomCar` that have been created from the detail page**
 
 The following **optional** features are implemented:
 
@@ -35,7 +35,9 @@ The following **additional** features are implemented:
 
 Here's a walkthrough of implemented required features:
 
-<img src='http://i.imgur.com/link/to/your/gif/file.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+https://github.com/michaelgirma/CupCentral/assets/130878160/8a69b135-5e96-4e5f-a703-6941f599d255
+
+
 
 <!-- Replace this with whatever GIF tool you used! -->
 GIF created with ...  GIF tool here
@@ -50,7 +52,7 @@ Describe any challenges encountered while building the app or any additional con
 
 ## License
 
-Copyright [yyyy] [name of copyright owner]
+Copyright [2023] [Michael Girma]
 
 Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
 
