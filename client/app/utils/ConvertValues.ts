@@ -36,7 +36,7 @@ export const ConvertValues = (value: any) => {
             return returnSize(value);
         }
 
-        if (value === 'Black' || value === 'Blue' || value === 'Green' || value === '#000000' || value === '#012169' || value === '#2F6F3E') {
+        else if (value === '#000000' || value === '#012169' || value === '#2F6F3E') {
 
             const returnID = (color: any) => {
                 if (color === '#000000') {
@@ -51,6 +51,35 @@ export const ConvertValues = (value: any) => {
             }
 
             return returnID(value);
+        }
+
+        else if (value === 'CupCentralImages/Lid#000000andCup#000000.png' || value === "CupCentralImages/Lid#000000andCup#012169.png" || value === "CupCentralImages/Lid#000000andCup#2F6F3E.png" || value === "CupCentralImages/Lid#012169andCup#000000.png" || value === "CupCentralImages/Lid#012169andCup#012169.png" || value === "CupCentralImages/Lid#012169andCup#2F6F3E.png" || value === "CupCentralImages/Lid#2F6F3EandCup#000000.png" || value === "CupCentralImages/Lid#2F6F3EandCup#012169.png" || value === "CupCentralImages/Lid#2F6F3EandCup#2F6F3E.png" ) {
+
+            const returnImage = (image: any) => {
+                if (image === 'CupCentralImages/Lid#000000andCup#000000.png') {
+                    return 'CupCentralImages/LidBlackandCupBlack.png'
+                } else if (image === 'CupCentralImages/Lid#000000andCup#012169.png') {
+                    return 'CupCentralImages/LidBlackandCupBlue.png'
+                } else if (image === 'CupCentralImages/Lid#000000andCup#2F6F3E.png') {
+                    return 'CupCentralImages/LidBlackandCupGreen.png'
+                } else if (image === 'CupCentralImages/Lid#012169andCup#000000.png') {
+                    return 'CupCentralImages/LidBlueandCupBlack.png'
+                } else if (image === 'CupCentralImages/Lid#012169andCup#012169.png') {
+                    return 'CupCentralImages/LidBlueandCupBlue.png'
+                } else if (image === 'CupCentralImages/Lid#012169andCup#2F6F3E.png') {
+                    return 'CupCentralImages/LidBlueandCupGreen.png'
+                } else if (image === 'CupCentralImages/Lid#2F6F3EandCup#000000.png') {
+                    return 'CupCentralImages/LidGreenandCupBlack.png'
+                } else if (image === 'CupCentralImages/Lid#2F6F3EandCup#012169.png') {
+                    return 'CupCentralImages/LidGreenandCupBlue.png'
+                } else if (image === 'CupCentralImages/Lid#2F6F3EandCup#2F6F3E.png') {
+                    return 'CupCentralImages/LidGreenandCupGreen.png'
+                } else {
+                    return ''
+                }
+            }
+
+            return returnImage(value);
         }
     }
 

@@ -51,7 +51,7 @@ export class CupQueries {
     }
     updateCupById(req, res, data, id) {
         const cup = data;
-        db.none("UPDATE cup SET title = $1, size_id = $2, color_id = $3, lid = $4 WHERE id = $5", [cup.title, cup.size_id, cup.color_id, cup.lid, id])
+        db.none("UPDATE cup SET title = $1, size_id = $2, color_id = $3, lid = $4, image = $5 WHERE id = $6", [cup.title, cup.size_id, cup.color_id, cup.lid, cup.image, id])
             .then(() => {
             console.log("Cup Updated");
         })
