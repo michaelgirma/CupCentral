@@ -13,13 +13,11 @@ export default function Home(cups: any) {
                                 <img src={cup.image} alt="Cup Image" id="CupImage"/>
                             </div>
                             <div id="CupInfo">
-                                <p id="CupName">{cup.name}</p>
-                                <p id="CupPrice">{cup.price}</p>
+                                <p id="CupName">{cup.title}</p>
                                 <a id="LearnMore" href={`/${cup.id}`}>Learn More</a>
                             </div>
                         </div>
                     ))}
-                    
                 </div>
             </div>
         <style>
@@ -27,8 +25,8 @@ export default function Home(cups: any) {
                 #Home{
                     display: flex;
                     position: relative;
-                    width: 100%;
-                    height: 100vh;
+                    width: 99%;
+                    height: 180vh;
                 }
                 #HomeContainer{
                     display: flex;
@@ -40,19 +38,20 @@ export default function Home(cups: any) {
                 }
                 #CupCardsContainer{
                     display: flex;
-                    flex-direction: row;
-                    justify-content: center;
+                    flex-direction: column;
+                    justify-content: flex-start;
                     align-items: center;
                     width: 100%;
                     height: 100%;
+                    overflow-y: scroll;
                 }
                 #CupCard{
                     display: flex;
                     flex-direction: column;
-                    justify-content: center;
+                    justify-content: space-around;
                     align-items: center;
-                    width: 300px;
-                    height: 300px;
+                    width: 250px;
+                    height: 700px;
                     margin: 10px;
                     border: 1px solid white;
                 }
@@ -61,7 +60,7 @@ export default function Home(cups: any) {
                     justify-content: center;
                     align-items: center;
                     width: 100%;
-                    height: 70%;
+                    height: 80%;
                 }
                 #CupImage{
                     width: 100%;
@@ -73,7 +72,7 @@ export default function Home(cups: any) {
                     justify-content: center;
                     align-items: center;
                     width: 100%;
-                    height: 30%;
+                    height: 15%;
                 }
                 #CupName{
                     font-size: 20px;

@@ -1,8 +1,10 @@
 import axios from "axios";
+import { Cup } from "../types";
 
-export default async function UpdateCupById(data: any) {
-    const id = data.id;
-    const response = await axios.patch(`http://localhost:4000/cups/update/${id}/${data}`);
-    console.log(response);
-    return response;
+export default async function UpdateCupById(data: Cup) {
+    try {
+        await axios.put(`http://localhost:4000/cups/update/${data.id}`, data);
+    } catch (error) {
+        console.error(error);
+    }
 }

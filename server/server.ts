@@ -23,6 +23,7 @@ const corsOptions = {
 }; 
 
 const server = express();
+server.use(express.json());
 server.use(cors(corsOptions));
 
 const ColorControllers = new ColorQueries();
@@ -63,17 +64,18 @@ server.get(CupRoutes.getCupById, (req, res) => {
     CupControllers.getCupById(req, res, id)
 });
 
-server.get(CupRoutes.createCup, (req, res) => {
-    const data = req.params.data;
+server.post(CupRoutes.createCup, (req, res) => {
+    const data = req.body;
     CupControllers.createCup(req, res, data)
 });
 
-server.get(CupRoutes.updateCupById, (req, res) => {
-    const data = req.params.data;
-    CupControllers.updateCupById(req, res, data)
+server.put(CupRoutes.updateCupById, (req, res) => {
+    const data = req.body;
+    const id = req.params.id;
+    CupControllers.updateCupById(req, res, data, id)
 });
 
-server.get(CupRoutes.deleteCupById, (req, res) => {
+server.delete(CupRoutes.deleteCupById, (req, res) => {
     const id = req.params.id;
     CupControllers.deleteCupById(req, res, id)
 });

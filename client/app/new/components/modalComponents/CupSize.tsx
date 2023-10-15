@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import GetAllSizes from "@/services/GET/GetAllSizes";
+import { ConvertValues } from "../../../utils/ConvertValues";
 
 interface CupSizeProps {
-    sendCupSize: (cupSize: string) => void;
+    sendCupSize: (cupSize: number) => void;
     setCupColor: () => void;
 }
 
@@ -27,17 +28,17 @@ const CupSize: React.FC<CupSizeProps> = ({ sendCupSize, setCupColor }) => {
     const changeCupSize = (size: string, id: string) => {
         setCupSize(size);
         setSelectedSizeId(id);
+        sendCupSize(ConvertValues(cupSize));
     }
 
     const checkCupSize = () => {
-        const cupState = cupSize;
-        if (cupState === '') {
+        if (cupSize === '') {
             setShowWarning(true);
             setTimeout(() => {
                 setShowWarning(false);
             }, 3000);
         } else {
-            sendCupSize(cupState);
+            sendCupSize(ConvertValues(cupSize));
             setCupColor();
         }
     }
@@ -46,7 +47,10 @@ const CupSize: React.FC<CupSizeProps> = ({ sendCupSize, setCupColor }) => {
     return (
         <div id="CupSize">
             <div id="CupSizeContainer">
-                <div id="RightCupSizeContainer">
+                <div id="CupSizeHeaderContainer">
+                    <p id="CupSizeHeader">Choose Your Cup Size</p>
+                </div>
+                <div id="CupSizeChoicesContainer">
                     {sizes.map((size: any) => (
                         <div id="Size" key={size.id}>
                             <div id="SizeSelectButton" onClick={() => changeCupSize(size.size, size.id)} className={selectedSizeId === size.id ? 'selected' : ''}>
@@ -54,54 +58,76 @@ const CupSize: React.FC<CupSizeProps> = ({ sendCupSize, setCupColor }) => {
                             </div>
                         </div>
                     ))}
-                    <div id="BottomCupSizeContainer">
-                        <button onClick={checkCupSize}>Next</button>
-                    </div>  
                 </div>
+                <div id="BottomCupSizeContainer">
+                    <button onClick={checkCupSize}>Next</button>
+                </div>  
             </div>
             <style>{`
-             #CupSize {
+            #CupSize {
                 display: flex; 
                 position: relative;
                 width: 100%;
                 height: 100%;
-             }
-             #CupSizeContainer {
+            }
+            #CupSizeContainer {
                 display: flex;
                 position: relative;
                 flex-direction: column;
                 width: 100%;
                 height: 100%;
-                justify-content: space-around;
+                align-items: center;
+                justify-content: center;
+            }
+            #CupSizeHeaderContainer {
+                display: flex;
+                position: relative;
+                width: 100%;
+                height: 20%;
+                justify-content: center;
                 align-items: center;
             }
-            #RightCupSizeContainer {
+            #CupSizeHeader {
+                display: flex;
+                position: relative;
+                font-size: 1.5rem;
+                font-family: InterBold;
+                color: white;
+            }
+            #CupSizeChoicesContainer {
                 display: flex;
                 position: relative;
                 flex-direction: column;
-                width: 50%;
+                width: 100%;
                 height: 80%;
-                justify-content: space-around;
                 align-items: center;
-                gap: 40px;
             }
-            #Size{
+            #CupSizeChoicesContainer {
                 display: flex;
                 position: relative;
-                width: 20%;
-                height: 100%;
-                justify-content: center;
-                align-items: center;
-                gap: 30px;
+                width: 100%;
+                height: 80%;
+                flex-direction: row;
+                justify-content: space-evenly;
+                align-items: space-evenly;
+            }
+            #Size {
+                display: flex;
+                position: relative;
+                width: 80px;
+                height: 80px;
             }
             #SizeSelectButton{
                 display: flex;
                 position: relative;
                 width: 100%;
                 height: 100%;
+                flex-direction: row;
                 justify-content: center;
                 align-items: center;
                 cursor: pointer;
+                border: 1px solid white;
+                border-radius: 50%;
             }
             #SizeSelectButton img{
                 display: flex;
@@ -109,6 +135,9 @@ const CupSize: React.FC<CupSizeProps> = ({ sendCupSize, setCupColor }) => {
                 width: 100%;
                 height: 100%;
                 object-fit: contain;
+                background-color: white;
+                border-radius: 50%;
+
             }
             #SizeSelectButton img:hover{ 
                 opacity: 0.5;

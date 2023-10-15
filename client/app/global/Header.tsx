@@ -4,69 +4,79 @@ export default function Header() {
     return (
         <div id="Header">
             <div id="HeaderContainer">
+                <div id="Title">
+                    <p id="TitleText">CupCentral</p>
+                </div>
                 <div id="MenuButtons">
-                    
+                    <a href="/new"><button>Create A Cup</button></a>
                 </div>
             </div>
         <style>
             {`
-                #Header {
+
+                #Header{
                     display: flex;
-                    position: fixed;
-                    top: 0;
-                    left: 0;
-                    width: 99.8vw;
-                    height: 100px;
+                    position: relative; 
+                    height: 150px;
+                    width: 100%;
                     justify-content: center;
                     align-items: center;
-                    z-index: 1;
                 }
-                #HeaderContainer {
+                #HeaderContainer{
                     display: flex;
                     position: relative;
-                    width: 100%;
                     height: 100%;
+                    width: 100%;
+                    justify-content: space-between;
+                    align-items: center;
+                }
+                #Title{
+                    display: flex;
+                    position: relative;
+                    height: 100%;
+                    width: 100%;
+                    justify-content: flex-start;
+                    align-items: center;
+                    padding-left: 50px;
+                }
+                #TitleText{
+                    display: flex;
+                    position: relative;
+                    font-size: 5rem;
+                    font-weight: bold;
+                    color: white;
+                }
+                #MenuButtons{
+                    display: flex;
+                    position: relative;
+                    height: 100%;
+                    width: 100%;
                     justify-content: flex-end;
                     align-items: center;
+                    padding-right: 50px;
                 }
-                #MenuButtons {
+                #MenuButtons button{
                     display: flex;
                     position: relative;
-                    width: 40%;
-                    height: 100%;
-                    justify-content: space-around;
-                    align-items: center;
-                }
-                #HomeButton {
-                    display: flex;
-                    position: relative;
-                    width: 50%;
-                    height: 100%;
+                    height: 50px;
+                    width: 100px;
                     justify-content: center;
                     align-items: center;
-                }
-                #HomeLink {
-                    font-size: 20px;
-                    font-family: InterBold;
-                    color: white;
+                    border-radius: 30px;
+                    background-color: white;
+                    border: none;
+                    cursor: pointer;
                     text-decoration: none;
                 }
-                #EventsButton {
-                    display: flex;
-                    position: relative;
-                    width: 50%;
-                    height: 100%;
-                    justify-content: center;
-                    align-items: center;
+                #MenuButtons button:hover{
+                    transform: scale(1.2); 
+                    transition: transform 0.4s ease-in-out;
+                    opacity: 0.5;
                 }
-                #EventsLink {
-                    font-size: 20px;
-                    font-family: InterBold;
-                    color: white;
+                #MenuButtons a{
                     text-decoration: none;
                 }
-                @media (max-width: 500px) {
-                    #MenuButtons { width: 70%; }
+            
             `}
         </style>
         </div>
