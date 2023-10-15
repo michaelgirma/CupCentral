@@ -13,7 +13,6 @@ interface UpdateCupProps {
 
 const UpdateCup: React.FC<UpdateCupProps> = ({ id, cup, hideUpdateCup, colors, sizes }) => {
 
-    const [updatedCup, setUpdatedCup] = useState(cup);
     const [showWarning, setShowWarning] = useState(false);
     const [title, setTitle] = useState(cup.title);
     const [cupSize, setCupSize] = useState(ConvertValues(cup.size_id));
@@ -50,9 +49,11 @@ const UpdateCup: React.FC<UpdateCupProps> = ({ id, cup, hideUpdateCup, colors, s
         setLidColor(value)
     }
 
-    const handleFormSubmit = (title: string, cupSize: string, cupColor: string, lidSize: string, lidColor: string) => {
-        const img = `CupCentralImages/Lid${lidColor}andCup${cupColor}.png`
+    const handleFormSubmit = (title: string, cupSize: string, cupColor: string, lidSize: string, lidColor: string, image: string) => {
+        const img = ConvertValues(image)
+        console.log(img)
         const newCup: Cup = {id: id, title: title, size_id: ConvertValues(cupSize), color_id: ConvertValues(cupColor), lid: [ConvertValues(lidSize), ConvertValues(lidColor)], image: img }
+        console.log(newCup.image)
         if (cupSize !== lidSize) {
             setShowWarning(true)
             setTimeout(() => {
@@ -60,8 +61,7 @@ const UpdateCup: React.FC<UpdateCupProps> = ({ id, cup, hideUpdateCup, colors, s
             }, 3000) 
             return 
         }
-        setUpdatedCup(newCup)
-        UpdateCupById(updatedCup)
+        UpdateCupById(newCup)
         setTimeout(() => {
             window.location.reload()
         }, 1000);
@@ -127,7 +127,7 @@ const UpdateCup: React.FC<UpdateCupProps> = ({ id, cup, hideUpdateCup, colors, s
                     </div>
                 </div>
                 <div id="UpdateCupButtonContainer">
-                    <div id="UpdateCupButton" onClick={() => handleFormSubmit(title, cupSize, cupColor, lidSize, lidColor)}>Update Cup</div>
+                    <div id="UpdateCupButton" onClick={() => handleFormSubmit(title, cupSize, cupColor, lidSize, lidColor, `CupCentralImages/Lid${lidColor}andCup${cupColor}.png`)}>Update Cup</div>
                 </div>
                 <div id="ShowWarningContainer">
                     {showWarning ? <div id="ShowWarning">Cup and Lid sizes must match!</div> : null}

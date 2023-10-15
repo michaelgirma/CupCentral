@@ -13,7 +13,7 @@ const port = process.env.PORT;
 
 const corsOptions = {
   origin: (origin: any, callback: any) => {
-    const allowedOrigins = "http://localhost:3000";
+    const allowedOrigins = "https://cupcentral.vercel.app";
     if (!origin || allowedOrigins.includes(origin)) {
       callback(null, true);
     } else {

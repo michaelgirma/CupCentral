@@ -2,7 +2,7 @@ import axios from "axios";
 
 export default async function GetCupById(id: string) {
     try {
-        const cup = await axios.get(`http://localhost:4000/cups/${id}`);
+        const cup = await axios.get(`https://cup-central-api-michaelgirma.vercel.app/cups/${id}`);
         return cup.data;
     } catch (error) {
         console.error(error);
