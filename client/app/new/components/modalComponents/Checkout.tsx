@@ -1,6 +1,6 @@
 import React from "react";
-import CreateCup from "@/services/POST/CreateCup";
-import { Cup } from "@/services/types";
+import CreateCup from "../../../../services/POST/CreateCup";
+import { Cup } from "../../../../services/types";
 
 interface CheckoutProps {
     finalCup: Cup;

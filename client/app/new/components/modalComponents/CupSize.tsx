@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import GetAllSizes from "@/services/GET/GetAllSizes";
+import GetAllSizes from "../../../../services/GET/GetAllSizes";
 import { ConvertValues } from "../../../utils/ConvertValues";
 
 interface CupSizeProps {

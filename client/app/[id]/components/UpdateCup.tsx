@@ -1,6 +1,6 @@
 import React, {useState} from "react";
-import UpdateCupById from "@/services/UPDATE/UpdateCupById";
-import { ConvertValues } from "@/app/utils/ConvertValues";
+import UpdateCupById from "../../../services/UPDATE/UpdateCupById";
+import { ConvertValues } from "../../utils/ConvertValues";
 import { Cup } from "../../../services/types";
 
 interface UpdateCupProps {

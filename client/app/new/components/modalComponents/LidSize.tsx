@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Cup } from "../../../../services/types";
-import GetAllSizes from "@/services/GET/GetAllSizes";
+import GetAllSizes from "../../../../services/GET/GetAllSizes";
 import { ConvertValues } from "../../../utils/ConvertValues";
 
 interface LidSizeProps {
