@@ -1,6 +1,6 @@
 'use client'
 import React, { useState } from "react";
-import DeleteCupById from "@/services/DELETE/DeleteCupById";
+import DeleteCupById from "../../../services/DELETE/DeleteCupById";
 import UpdateCup from "./UpdateCup";
 
 interface CupProps {

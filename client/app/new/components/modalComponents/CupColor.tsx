@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Cup } from "../../../../services/types";
-import GetAllColors from "@/services/GET/GetAllColors";
+import GetAllColors from "../../../../services/GET/GetAllColors";
 import { ConvertValues } from "../../../utils/ConvertValues";
 
 interface CupColorProps {
