@@ -7,13 +7,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-import pgp from "pg-promise";
-import dotenv from "dotenv";
-dotenv.config();
-const connection = {
-    connectionString: process.env.POSTGRES_URL + "?sslmode=require",
-};
-const db = pgp()(connection);
+import { db } from "../db.js";
 export class SizeQueries {
     getAllSizes(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -27,6 +21,7 @@ export class SizeQueries {
             }
         });
     }
+    ;
     getSizeById(req, res, id) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
@@ -39,4 +34,6 @@ export class SizeQueries {
             }
         });
     }
+    ;
 }
+;

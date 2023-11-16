@@ -13,7 +13,6 @@ export default function Header() {
             </div>
         <style>
             {`
-
                 #Header{
                     display: flex;
                     position: relative; 
@@ -76,7 +75,6 @@ export default function Header() {
                 #MenuButtons a{
                     text-decoration: none;
                 }
-            
             `}
         </style>
         </div>

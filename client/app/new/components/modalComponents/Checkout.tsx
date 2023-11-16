@@ -11,7 +11,7 @@ const Checkout: React.FC<CheckoutProps> = ({ finalCup }) => {
     const submitFinalCup = (data: any) => {
         const finalCup: Cup = data; 
         CreateCup(finalCup);
-        window.location.href = '/'
+        window.location.href = '/';
     }
     
     return (

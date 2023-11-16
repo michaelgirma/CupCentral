@@ -9,7 +9,12 @@ import Checkout from './modalComponents/Checkout'
 import { CupImages } from '../../utils/CupImages'
 import { Cup, CupImage } from '../../../services/types'
 
-export default function NewForm() {
+interface NewFormProps {
+    sizes: string[];
+    colors: string[];
+}
+
+const NewForm: React.FC<NewFormProps> = ({ sizes, colors }) => {
     const [cup, setCup] = useState<Cup>({ title: '', size_id: 0, color_id: 0, lid: [], image: '' });
     const [showCupTitle, setShowCupTitle] = useState(true);
     const [showCupSize, setShowCupSize] = useState(false);
@@ -101,87 +106,89 @@ export default function NewForm() {
                 <div id="RightContainer">
                     <div id="Modal">
                         {showCupTitle && <CupTitle sendCupTitle={(cupTitle: string) => addCupTitle(cupTitle)} setCupSize={handleShowCupSize} />}
-                        {showCupSize && <CupSize sendCupSize={(cupSize: number) => addCupSize(cupSize)} setCupColor={handleShowCupColor}  />}
-                        {showCupColor && <CupColor prevCup={cup} sendCupColor={(cupColor: number) => addCupColor(cupColor)} setLidSize={handleShowLidSize} updateCupColor={(cupColor: string, lidColor: string) => changeCupImage(cupColor, lidColor)}/>}
-                        {showLidSize && <LidSize prevCup={cup} sendLidSize={(lidSize: number) => addLidSize(lidSize)} setLidColor={handleShowLidColor} />}
-                        {showLidColor && <LidColor prevCup={cup} sendLidColor={(lidColor: number) => addLidColor(lidColor)} setCheckout={handleShowCheckout} updateLidColor={(lidColor: string) => changeCupImage(cupColor, lidColor)}/>}
+                        {showCupSize && <CupSize sizes={sizes} sendCupSize={(cupSize: number) => addCupSize(cupSize)} setCupColor={handleShowCupColor}  />}
+                        {showCupColor && <CupColor colors={colors} prevCup={cup} sendCupColor={(cupColor: number) => addCupColor(cupColor)} setLidSize={handleShowLidSize} updateCupColor={(cupColor: string, lidColor: string) => changeCupImage(cupColor, lidColor)}/>}
+                        {showLidSize && <LidSize sizes={sizes} prevCup={cup} sendLidSize={(lidSize: number) => addLidSize(lidSize)} setLidColor={handleShowLidColor} />}
+                        {showLidColor && <LidColor colors={colors} prevCup={cup} sendLidColor={(lidColor: number) => addLidColor(lidColor)} setCheckout={handleShowCheckout} updateLidColor={(lidColor: string) => changeCupImage(cupColor, lidColor)}/>}
                         {showCheckout && <Checkout finalCup={cup} />}
                     </div>
                 </div>
             </div>
-            <style>{`
-                #NewCup{
-                    display: flex;
-                    position: relative;
-                    width: 100%;
-                    height: 100vh;
-                    justify-content: center;
-                    align-items: center;
+            <style>
+                {`
+                    #NewCup{
+                        display: flex;
+                        position: relative;
+                        width: 100%;
+                        height: 100vh;
+                        justify-content: center;
+                        align-items: center;
 
-                }
-                #NewCupContainer{
-                    display: flex;
-                    position: relative;
-                    width: 80%;
-                    height: 80%;
-                    justify-content: space-between;
-                    border: 1px solid white;
-                    border-radius: 30px;
-                }
-                #LeftContainer{
-                    display: flex;
-                    position: relative;
-                    width: 49%;
-                    height: 100%;
-                    justify-content: center;
-                    align-items: center;
-                    border: 1px solid white;
-                    border-top-left-radius: 30px;
-                    border-bottom-left-radius: 30px;
-                    background-color: white;
-                }
-                #LeftContainer img{
-                    display: flex;
-                    position: relative;
-                    width: 80%;
-                    height: 80%;
-                    object-fit: contain;
-                    justify-content: center;
-                    align-items: center;
-                }
-                #RightContainer{
-                    display: flex;
-                    position: relative;
-                    flex-direction: column;
-                    width: 51%;
-                    height: 95%;
-                    justify-content: space-between;
-                    align-items: center;
-=                }
-                #NewCupHeader{
-                    display: flex;
-                    position: relative;
-                    width: 100%;
-                    height: 39%;
-                    justify-content: center;
-                    align-items: center;
-                }
-                #NewCupHeader h1{
-                    color: white;
-                    font-size: 3.5rem;
-                }
-                #Modal{
-                    display: flex;
-                    position: relative;
-                    width: 100%;
-                    height: 59%;
-                    justify-content: center;
-                    align-items: center;
-                    border-radius: 30px;
-                }
-                    
-                
-            `}</style>
+                    }
+                    #NewCupContainer{
+                        display: flex;
+                        position: relative;
+                        width: 80%;
+                        height: 80%;
+                        justify-content: space-between;
+                        border: 1px solid white;
+                        border-radius: 30px;
+                    }
+                    #LeftContainer{
+                        display: flex;
+                        position: relative;
+                        width: 49%;
+                        height: 100%;
+                        justify-content: center;
+                        align-items: center;
+                        border: 1px solid white;
+                        border-top-left-radius: 30px;
+                        border-bottom-left-radius: 30px;
+                        background-color: white;
+                    }
+                    #LeftContainer img{
+                        display: flex;
+                        position: relative;
+                        width: 80%;
+                        height: 80%;
+                        object-fit: contain;
+                        justify-content: center;
+                        align-items: center;
+                    }
+                    #RightContainer{
+                        display: flex;
+                        position: relative;
+                        flex-direction: column;
+                        width: 51%;
+                        height: 95%;
+                        justify-content: space-between;
+                        align-items: center;
+                    }
+                    #NewCupHeader{
+                        display: flex;
+                        position: relative;
+                        width: 100%;
+                        height: 39%;
+                        justify-content: center;
+                        align-items: center;
+                    }
+                    #NewCupHeader h1{
+                        color: white;
+                        font-size: 3.5rem;
+                    }
+                    #Modal{
+                        display: flex;
+                        position: relative;
+                        width: 100%;
+                        height: 59%;
+                        justify-content: center;
+                        align-items: center;
+                        border-radius: 30px;
+                    }
+                `}
+            </style>
         </div>
     )
 }
+
+export default NewForm;

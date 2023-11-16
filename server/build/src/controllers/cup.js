@@ -7,13 +7,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-import pgp from "pg-promise";
-import dotenv from "dotenv";
-dotenv.config();
-const connection = {
-    connectionString: process.env.POSTGRES_URL + "?sslmode=require",
-};
-const db = pgp()(connection);
+import { db } from "../db.js";
 export class CupQueries {
     getAllCups(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -27,6 +21,7 @@ export class CupQueries {
             }
         });
     }
+    ;
     getCupById(req, res, id) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
@@ -39,6 +34,7 @@ export class CupQueries {
             }
         });
     }
+    ;
     createCup(req, res, data) {
         const cup = data;
         db.none("INSERT INTO cup (title, size_id, color_id, lid, image) VALUES ($1, $2, $3, $4, $5)", [cup.title, cup.size_id, cup.color_id, cup.lid, cup.image])
@@ -49,6 +45,7 @@ export class CupQueries {
             console.error(error);
         });
     }
+    ;
     updateCupById(req, res, data, id) {
         const cup = data;
         db.none("UPDATE cup SET title = $1, size_id = $2, color_id = $3, lid = $4, image = $5 WHERE id = $6", [cup.title, cup.size_id, cup.color_id, cup.lid, cup.image, id])
@@ -59,13 +56,16 @@ export class CupQueries {
             console.error(error);
         });
     }
+    ;
     deleteCupById(req, res, id) {
         db.none("DELETE FROM cup WHERE id = $1", [id])
             .then(() => {
-            console.log("Hotel deleted");
+            console.log("Cup deleted");
         })
             .catch((error) => {
             console.error(error);
         });
     }
+    ;
 }
+;

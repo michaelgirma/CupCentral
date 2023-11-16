@@ -4,29 +4,19 @@ import GetAllColors from "../../../../services/GET/GetAllColors";
 import { ConvertValues } from "../../../utils/ConvertValues";
 
 interface LidColorProps {
+    colors: string[];
     prevCup: Cup;
     updateLidColor: (lidColor: string) => void;
     sendLidColor: (lidColor: number) => void;
     setCheckout: () => void;
 }
 
-const LidColor: React.FC<LidColorProps> = ({ prevCup, sendLidColor, setCheckout, updateLidColor }) => {
+const LidColor: React.FC<LidColorProps> = ({ colors, prevCup, sendLidColor, setCheckout, updateLidColor }) => {
 
     const [lidColor, setLidColor] = useState('');
     const [showWarning, setShowWarning] = useState(false);
-    const [colors, setColors] = useState([]);
     const [selectedColorId, setSelectedColorId] = useState<string | null>(null);
     const [prevCupColor, setPrevCupColor] = useState('');
-
-    
-    const fetchAllColors = async () => {
-        const res = await GetAllColors();
-        setColors(res);             
-    };
-
-    if (colors.length === 0) {
-        fetchAllColors();
-    }
 
     const changeLidColor = (cupColor: string, color: string, id: string) => {
         setLidColor(color);

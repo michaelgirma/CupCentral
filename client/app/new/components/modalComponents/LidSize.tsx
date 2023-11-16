@@ -1,29 +1,19 @@
 import React, { useState } from "react";
 import { Cup } from "../../../../services/types";
-import GetAllSizes from "../../../../services/GET/GetAllSizes";
 import { ConvertValues } from "../../../utils/ConvertValues";
 
 interface LidSizeProps {
+    sizes: string[];
     prevCup: Cup;
     sendLidSize: (LidSize: number) => void;
     setLidColor: () => void;
 }
 
-const LidSize: React.FC<LidSizeProps> = ({ prevCup, sendLidSize, setLidColor }) => {
+const LidSize: React.FC<LidSizeProps> = ({ sizes, prevCup, sendLidSize, setLidColor }) => {
 
     const [lidSize, setLidSize] = useState('');
     const [showWarning, setShowWarning] = useState(false);
-    const [sizes, setSizes] = useState([]);
     const [selectedSizeId, setSelectedSizeId] = useState<string | null>(null);
-
-    const fetchAllSizes = async () => {
-        const res = await GetAllSizes();
-        setSizes(res);             
-    };
-
-    if (sizes.length === 0) {
-        fetchAllSizes();
-    }
 
     const changeLidSize = (size: string, id: string) => {
         setLidSize(size);
