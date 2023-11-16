@@ -4,4 +4,4 @@ export interface Cup {
     color_id: number;
     lid: string[];
     image: string;
-}
+};

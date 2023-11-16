@@ -13,7 +13,7 @@ const port = process.env.PORT;
 
 const corsOptions = {
   origin: (origin: any, callback: any) => {
-    const allowedOrigins = "https://cupcentral.vercel.app";
+    const allowedOrigins = process.env.CLIENT_URL || '';
     if (!origin || allowedOrigins.includes(origin)) {
       callback(null, true);
     } else {

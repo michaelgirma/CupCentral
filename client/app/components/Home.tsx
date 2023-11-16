@@ -1,13 +1,19 @@
-import '../globals.css'
+"use client";
+import React from 'react';
+import "../globals.css";
+import { Cup } from '../../services/types';
 
+interface HomeProps {
+    cups: Cup[];
+}
 
-export default function Home(cups: any) {
+const Home: React.FC<HomeProps> = ({ cups }) => {
 
     return ( 
         <div id="Home">
             <div id="HomeContainer">
                 <div id="CupCardsContainer">
-                    {cups.cups.map((cup:any) => (
+                    {cups.map((cup: Cup) => (
                         <div id="CupCard" key={cup.id}>
                             <div id="CupImageContainer">
                                 <img src={cup.image} alt="Cup Image" id="CupImage"/>
@@ -92,4 +98,6 @@ export default function Home(cups: any) {
         </style>
         </div>
     )
-}
+};
+
+export default Home;

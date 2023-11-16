@@ -1,9 +1,8 @@
-import { Metadata } from 'next';
 import React from 'react';
-import "./globals.css"
-import GetAllCups from '../services/GET/GetAllCups';
-import Home from './components/Home';
+import { Metadata } from 'next';
 import Header from './global/Header';
+import Home from './components/Home';
+import GetAllCups from '../services/GET/GetAllCups';
 
 export const metadata: Metadata = {
   title: 'CupCentral',
@@ -13,13 +12,13 @@ export const metadata: Metadata = {
 export default async function Page() {
 
   const cups = await GetAllCups();
-
+  
   return (
     <html>
       <body>
-        <Header/>
-        <Home cups={cups}/>
+        <Header />
+        <Home cups={cups} />
       </body>
-  </html>
+    </html>
   )
 }

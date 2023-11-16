@@ -1,31 +1,21 @@
 import React, { useState } from "react";
 import { Cup } from "../../../../services/types";
-import GetAllColors from "../../../../services/GET/GetAllColors";
 import { ConvertValues } from "../../../utils/ConvertValues";
 
 interface CupColorProps {
+    colors: string[];
     prevCup: Cup;
     updateCupColor: (cupColor: string, lidColor: string) => void;
     sendCupColor: (cupColor: number) => void;
     setLidSize: () => void;
 }
 
-const CupColor: React.FC<CupColorProps> = ({ prevCup, sendCupColor, setLidSize, updateCupColor }) => {
+const CupColor: React.FC<CupColorProps> = ({ colors, prevCup, sendCupColor, setLidSize, updateCupColor }) => {
 
     const [cupColor, setCupColor] = useState('');
     const [showWarning, setShowWarning] = useState(false);
-    const [colors, setColors] = useState([]);
     const [selectedColorId, setSelectedColorId] = useState<string | null>(null);
 
-
-    const fetchAllColors = async () => {
-        const res = await GetAllColors();
-        setColors(res);             
-    };
-
-    if (colors.length === 0) {
-        fetchAllColors();
-    }
 
     const changeCupColor = (color: string, id: string) => {
         setCupColor(color);

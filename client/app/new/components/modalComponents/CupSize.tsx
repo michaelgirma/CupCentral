@@ -3,26 +3,16 @@ import GetAllSizes from "../../../../services/GET/GetAllSizes";
 import { ConvertValues } from "../../../utils/ConvertValues";
 
 interface CupSizeProps {
+    sizes: string[];
     sendCupSize: (cupSize: number) => void;
     setCupColor: () => void;
 }
 
-const CupSize: React.FC<CupSizeProps> = ({ sendCupSize, setCupColor }) => {
+const CupSize: React.FC<CupSizeProps> = ({ sizes, sendCupSize, setCupColor }) => {
 
     const [cupSize, setCupSize] = useState('');
     const [showWarning, setShowWarning] = useState(false);
-    const [sizes, setSizes] = useState([]);
     const [selectedSizeId, setSelectedSizeId] = useState<string | null>(null);
-
-    
-    const fetchAllSizes = async () => {
-        const res = await GetAllSizes();
-        setSizes(res);             
-    };
-
-    if (sizes.length === 0) {
-        fetchAllSizes();
-    }
 
 
     const changeCupSize = (size: string, id: string) => {

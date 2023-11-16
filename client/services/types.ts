@@ -1,5 +1,5 @@
 export interface Cup { 
-    id?: number;
+    id?: string;
     title: string;
     size_id: number;
     color_id: number;

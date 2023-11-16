@@ -1,13 +1,13 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import UpdateCupById from "../../../services/UPDATE/UpdateCupById";
 import { ConvertValues } from "../../utils/ConvertValues";
 import { Cup } from "../../../services/types";
 
 interface UpdateCupProps {
-    id: any;
+    id: string;
     cup: Cup;
-    colors: any;
-    sizes: any;
+    colors: string[];
+    sizes: string[];
     hideUpdateCup: () => void;
 }
 

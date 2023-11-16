@@ -1,23 +1,25 @@
 import { Metadata } from 'next';
 import React from 'react';
-import "./globals.css"
+import Header from '../global/Header';
 import NewForm from './components/NewForm';
-
-
+import GetAllSizes from '../../services/GET/GetAllSizes';
+import GetAllColors from '../../services/GET/GetAllColors';
 
 export const metadata: Metadata = {
-  title: 'CupCentral',
-  description: 'Buy Your Customized Cups Here!',
+  title: 'MealMaster | New Post',
+  description: 'Post your meals here!',
 };
 
-export default function Home() {
+export default async function Page() {
 
- 
+  const sizes = await GetAllSizes();
+  const colors = await GetAllColors();
 
   return (
     <html>
       <body>
-        <NewForm />
+        <Header />
+        <NewForm sizes={sizes} colors={colors} />
       </body>
   </html>
   )

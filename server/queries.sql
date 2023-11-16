@@ -24,21 +24,21 @@ VALUES ('Black','#000000'),
        ('Red','#C70000');
 
 
-CREATE TABLE lid (
-    id SERIAL PRIMARY KEY,
-    size_id INT REFERENCES size(id),
-    color_id INT REFERENCES color(id),
-    image TEXT NOT NULL
-);
+-- CREATE TABLE lid (
+--     id SERIAL PRIMARY KEY,
+--     size_id INT REFERENCES size(id),
+--     color_id INT REFERENCES color(id),
+--     image TEXT NOT NULL
+-- );
 
-CREATE TABLE cup (
-    id SERIAL PRIMARY KEY,
-    title TEXT NOT NULL,
-    lid_id INT REFERENCES lid(id),
-    color_id INT REFERENCES color(id),
-    size_id INT REFERENCES size(id),
-    image TEXT NOT NULL
-);
+-- CREATE TABLE cup (
+--     id SERIAL PRIMARY KEY,
+--     title TEXT NOT NULL,
+--     lid_id INT REFERENCES lid(id),
+--     color_id INT REFERENCES color(id),
+--     size_id INT REFERENCES size(id),
+--     image TEXT NOT NULL
+-- );
 
 CREATE TABLE cup (
     id SERIAL PRIMARY KEY,
