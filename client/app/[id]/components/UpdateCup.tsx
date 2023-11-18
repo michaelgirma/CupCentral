@@ -64,7 +64,7 @@ const UpdateCup: React.FC<UpdateCupProps> = ({ id, cup, hideUpdateCup, colors, s
         UpdateCupById(newCup);
         setTimeout(() => {
             window.location.reload();
-        }, 2000);
+        }, 1000);
     }
 
     return (
