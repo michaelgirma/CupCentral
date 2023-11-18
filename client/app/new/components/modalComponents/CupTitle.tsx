@@ -47,6 +47,70 @@ const CupTitle: React.FC<CupTitleProps> = ({ sendCupTitle, setCupSize }) => {
             {`
                 #CupTitle {
                     display: flex;
+                    position: relative;
+                    width: 100%;
+                    height: 50vh;
+                    justify-content: center;
+                    align-items: center;
+                }
+                #CupTitleContainer {
+                    display: flex;
+                    position: relative;
+                    flex-direction: column;
+                    width: 100%;
+                    height: 100%;
+                    justify-content: center;
+                    align-items: center;
+                    gap: 20px;
+                }
+                #CupTitleHeaderContainer {
+                    display: flex;
+                    position: relative;
+                    width: 100%;
+                    height: 10%;
+                    justify-content: space-around;
+                    align-items: center;
+                }
+                #CupTitleHeader {
+                    display: flex;
+                    position: relative;
+                    font-size: 1.5em;
+                    font-weight: bold;
+                    color: white;
+                }
+                #CupTitleButtonContainer {
+                    display: flex;
+                    position: relative;
+                    width: 100%;
+                    height: 10%;
+                    justify-content: center;
+                    align-items: center;
+                }
+                #CupTitleButton {
+                    display: flex;
+                    position: relative;
+                    width: 100px;
+                    height: 30px;
+                    justify-content: center;
+                    align-items: center;
+                    border-radius: 15px;
+                    cursor: pointer;
+                    border-color: white;
+                    background-color: white;
+                    color: black;
+                    font-size: 1.5rem;
+                    transition: 0.5s;
+                }
+                #CupTitleButton:hover {
+                    background-color: black;
+                    color: white;
+                }
+                #CupTitleWarning {
+                    display: flex;
+                    position: relative;
+                    font-size: 1.5em;
+                    font-weight: bold;
+                    color: red;
                 }
             `}
         </style>
