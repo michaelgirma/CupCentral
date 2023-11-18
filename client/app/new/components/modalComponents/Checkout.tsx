@@ -12,7 +12,7 @@ const Checkout: React.FC<CheckoutProps> = ({ finalCup }) => {
         CreateCup(data);
         setTimeout(() => {
             window.location.href = '/';
-        }, 10);
+        }, 2000);
     }
     
     return (

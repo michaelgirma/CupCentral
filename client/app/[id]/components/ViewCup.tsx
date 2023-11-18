@@ -19,7 +19,7 @@ const ViewCup: React.FC<ViewCupProps> = ({ cup, colors, sizes }) => {
         DeleteCupById(cup.id);
         setTimeout(() => {
             window.location.href = '/';
-        }, 10);
+        }, 2000);
     }
 
     const showUpdateModal = () => {
