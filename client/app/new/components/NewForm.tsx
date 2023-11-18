@@ -133,6 +133,7 @@ const NewForm: React.FC<NewFormProps> = ({ sizes, colors }) => {
                         justify-content: space-between;
                         border: 1px solid white;
                         border-radius: 30px;
+                        margin-top: 12vh;
                     }
                     #LeftContainer{
                         display: flex;
@@ -161,7 +162,7 @@ const NewForm: React.FC<NewFormProps> = ({ sizes, colors }) => {
                         flex-direction: column;
                         width: 51%;
                         height: 95%;
-                        justify-content: space-between;
+                        justify-content: center;
                         align-items: center;
                     }
                     #NewCupHeader{

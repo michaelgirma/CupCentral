@@ -61,8 +61,8 @@ const CupColor: React.FC<CupColorProps> = ({ colors, prevCup, sendCupColor, setL
                 #CupColor {
                     display: flex;
                     position: relative;
-                    width: 99%;
-                    height: 100%;
+                    width: 100%;
+                    height: 50vh;
                     justify-content: center;
                     align-items: center;
                 }
@@ -79,8 +79,8 @@ const CupColor: React.FC<CupColorProps> = ({ colors, prevCup, sendCupColor, setL
                     display: flex;
                     position: relative;
                     width: 100%;
-                    height: 100%;
-                    justify-content: center;
+                    height: 10%;
+                    justify-content: space-around;
                     align-items: center;
                 }
                 #CupColorHeader {
@@ -136,12 +136,12 @@ const CupColor: React.FC<CupColorProps> = ({ colors, prevCup, sendCupColor, setL
                     border-radius: 30px;
                     font-size: 1.2rem;
                     font-weight: bold;
+                    transition: 0.5s;
+                    border-color: white;
                 }
                 #CupColorButton button:hover{
-                    transform: scale(1.2); 
-                    transition: transform 0.4s ease-in-out;
-                    opacity: 0.5;
-                    cursor: pointer;
+                    background-color: black;
+                    color: white;
                 }
             `}</style>
         </div>

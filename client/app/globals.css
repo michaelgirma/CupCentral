@@ -14,7 +14,7 @@ body::-webkit-scrollbar {
 }
 
 body::-webkit-scrollbar-thumb {
-  background-color: #F5F5F5;
+  background-color: black;
 }
 
 @font-face {
@@ -37,7 +37,3 @@ body::-webkit-scrollbar-thumb {
   src: url('/Inter-Bold.ttf') format('truetype');
 }
 
-@font-face {
-  font-family: 'Consolas';
-  src: url('/Consolas.ttf') format('truetype');
-}

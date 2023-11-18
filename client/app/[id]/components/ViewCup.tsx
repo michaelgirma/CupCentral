@@ -19,7 +19,7 @@ const ViewCup: React.FC<ViewCupProps> = ({ cup, colors, sizes }) => {
         DeleteCupById(cup.id);
         setTimeout(() => {
             window.location.href = '/';
-        }, 1000);
+        }, 10);
     }
 
     const showUpdateModal = () => {
@@ -34,7 +34,7 @@ const ViewCup: React.FC<ViewCupProps> = ({ cup, colors, sizes }) => {
         <div id="SpecificCup">
             <div id="SpecificCupContainer">
                 <div id="SpecificCupImageContainer">
-                    <img src={cup.image} />
+                    <img id= "SpecifiedCupImage" src={cup.image} />
                 </div>
                 <div id="SpecificCupTextContainer">
                     <div id="SpecificCupDescriptionContainer">
@@ -65,16 +65,17 @@ const ViewCup: React.FC<ViewCupProps> = ({ cup, colors, sizes }) => {
                     height: 100%;
                     justify-content: space-around;
                     align-items: center;
+                    margin-top: 10px;
                 }
                 #SpecificCupImageContainer {
                     display: flex;
                     position: relative;
                     width: 50%;
-                    height: 100%;
+                    height: 95%;
                     justify-content: center;
                     align-items: center;
                 }
-                #SpecificCupImageContainer img {
+                #SpecifiedCupImage {
                     display: flex;
                     position: relative;
                     width: 80%;
@@ -88,19 +89,22 @@ const ViewCup: React.FC<ViewCupProps> = ({ cup, colors, sizes }) => {
                     position: relative;
                     flex-direction: column;
                     width: 50%;
-                    height: 98%;
+                    height: 65%;
                     justify-content: center;
                     align-items: center;
                 }
                 #SpecificCupDescriptionContainer {
                     display: flex;
                     position: relative;
-                    width: 100%;
+                    width: 80%;
                     height: 40%;
                     justify-content: center;
                     align-items: center;
-                    margin-top: 100px;
                     border: 1px solid white;
+                    transition: 0.5s;
+                }
+                #SpecificCupDescriptionContainer:hover {
+                    border-color: grey;
                 }
                 #SpecificCupDescriptionContainer h1 {
                     font-size: 2rem;
@@ -129,19 +133,33 @@ const ViewCup: React.FC<ViewCupProps> = ({ cup, colors, sizes }) => {
                     background-color: white;
                     color: black;
                     font-size: 1.5rem;
+                    transition: 0.5s;
                 }
                 #SpecificCupButtonContainer button:hover {
-                    transform: scale(1.1); 
-                    transition: transform 0.3s ease-in-out;
                     opacity: 0.5;
+                    background-color: black;
+                    color: white;
                 }
                 #SpecificCupButtonContainer a {
                     text-decoration: none;
                 }
-               
-
                 
-                
+                @media (max-width: 1100px) {
+                    #SpecificCup {
+                        height: 200vh;
+                    }
+                    #SpecificCupContainer {
+                        flex-direction: column;
+                        margin-top: 100px;
+                    }
+                    #SpecificCupTextContainer {
+                        height: 80%;
+                        border: 1px solid green;
+                    }
+                    #SpecificCupButtonContainer {
+                        flex-direction: column;
+                    }
+                }
                 `}
             </style>
         </div>

@@ -8,10 +8,11 @@ interface CheckoutProps {
 
 const Checkout: React.FC<CheckoutProps> = ({ finalCup }) => {
     
-    const submitFinalCup = (data: any) => {
-        const finalCup: Cup = data; 
-        CreateCup(finalCup);
-        window.location.href = '/';
+    const submitFinalCup = (data: Cup) => {
+        CreateCup(data);
+        setTimeout(() => {
+            window.location.href = '/';
+        }, 10);
     }
     
     return (
@@ -94,10 +95,12 @@ const Checkout: React.FC<CheckoutProps> = ({ finalCup }) => {
                     border-radius: 50%;
                     font-size: 1.2rem;
                     font-weight: bold;
+                    border: 1px solid white;
+                    transition: 0.5s;
                 }
                 #CheckoutSubmitContainer button:hover{
-                    transform: scale(1.2); 
-                    transition: transform 0.4s ease-in-out;
+                    background-color: black;
+                    color: white;
                     opacity: 0.5;
                     cursor: pointer;
                 }

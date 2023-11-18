@@ -150,12 +150,12 @@ const LidColor: React.FC<LidColorProps> = ({ colors, prevCup, sendLidColor, setC
                 border-radius: 30px;
                 font-size: 1.2rem;
                 font-weight: bold;
+                transition: 0.5s;
+                border-color: white;
             }
             #LidSizeButton button:hover{
-                transform: scale(1.2); 
-                transition: transform 0.4s ease-in-out;
-                opacity: 0.5;
-                cursor: pointer;
+                background-color: black;
+                color: white; 
             }
 
             
